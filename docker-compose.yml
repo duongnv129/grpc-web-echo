@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  node-server:
+    build: ./server/
+    hostname: node-server
+    container_name: node-server
+    networks:
+      - default
+    ports:
+      - "9090:9090"
+
+  web:
+    build: ./web/
+    hostname: web
+    container_name: web
+    networks:
+      - default
+    ports:
+      - "3000:80"
+
+  envoy:
+    build: ./envoy/
+    hostname: envoy
+    container_name: envoy
+    networks:
+      - default
+    ports:
+      - "8080:8080"
+
+networks:
+  default:
+    external:
+      name: docker
